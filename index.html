@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="여행지와 주변 숙소를 찾아 예약하세요.">
+  <title>여행길 | 여행지와 숙소 예약</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="index.html">여행길<span>.</span></a>
+    <nav class="top-actions" aria-label="계정 메뉴">
+      <button class="btn btn-quiet" id="reserveBtn">예약</button>
+      <button class="btn btn-quiet" id="signupOpen">회원가입</button>
+      <button class="btn btn-quiet" id="loginOpen">로그인</button>
+      <button class="btn btn-quiet hidden" id="logoutBtn">로그아웃</button>
+      <button class="btn btn-primary" id="adminOpen">관리자</button>
+      <button class="btn btn-primary hidden" id="adminLogoutBtn">관리자로그아웃</button>
+    </nav>
+  </header>
+  <main>
+    <section class="hero"><div class="hero-copy"><p class="eyebrow">다음 여행을 시작하세요</p><h1>머물고 싶은 곳으로<br>떠나는 여행</h1><p>마음에 드는 여행지를 고르고, 주변 숙소를 찾아보세요.</p>
+      <div class="search-row"><label class="sr-only" for="destinationSearch">여행지 검색</label><input id="destinationSearch" placeholder="여행지 또는 지역을 검색하세요"><button id="searchBtn" class="btn btn-primary">여행지 찾기</button></div>
+    </div><div class="hero-art" aria-hidden="true"><span class="sun"></span><span class="mountain mountain-back"></span><span class="mountain mountain-front"></span><span class="pin">✦</span></div></section>
+    <section class="section"><div class="section-heading"><div><p class="eyebrow">DESTINATIONS</p><h2>여행지를 둘러보세요</h2></div><span id="dataNotice" class="muted"></span></div><div id="destinationGrid" class="card-grid"><div class="empty-state">여행지를 불러오는 중입니다.</div></div></section>
+    <section class="section stay-section"><div class="section-heading"><div><p class="eyebrow">STAYS</p><h2>추천 숙소</h2></div></div><div id="stayGrid" class="card-grid"><div class="empty-state">숙소를 불러오는 중입니다.</div></div></section>
+  </main>
+  <footer><span>여행길</span><span>여행의 시작과 머무는 순간을 함께합니다.</span></footer>
+  <button id="toTop" class="to-top" aria-label="페이지 맨 위로 이동" title="맨 위로"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg></button>
+
+  <dialog id="signupDialog" class="modal"><form id="signupForm" class="form-card"><button type="button" class="modal-close" data-close="signupDialog" aria-label="닫기">×</button><p class="eyebrow">WELCOME</p><h2>회원가입</h2><label>이름<input name="name" required autocomplete="name"></label><label>이메일<input name="email" type="email" required autocomplete="email"></label><label>비밀번호<input name="password" type="password" minlength="6" required autocomplete="new-password"></label><label>연락처 <span class="muted">(선택)</span><input name="phone" type="tel" autocomplete="tel"></label><button class="btn btn-primary btn-wide">가입하기</button></form></dialog>
+  <dialog id="loginDialog" class="modal"><form id="loginForm" class="form-card"><button type="button" class="modal-close" data-close="loginDialog" aria-label="닫기">×</button><p class="eyebrow">WELCOME BACK</p><h2>로그인</h2><label>이메일<input name="email" type="email" required autocomplete="username"></label><label>비밀번호<input name="password" type="password" required autocomplete="current-password"></label><button class="btn btn-primary btn-wide">로그인</button></form></dialog>
+  <dialog id="adminDialog" class="modal"><form id="adminForm" class="form-card"><button type="button" class="modal-close" data-close="adminDialog" aria-label="닫기">×</button><p class="eyebrow">ADMIN</p><h2>관리자 로그인</h2><label>아이디<input name="username" required autocomplete="username" value="admin"></label><label>Firebase Authentication 비밀번호<input name="password" type="password" required autocomplete="current-password"></label><p class="hint">관리자 계정은 Firebase Authentication에 미리 등록해야 합니다.</p><button class="btn btn-primary btn-wide">관리자 로그인</button></form></dialog>
+  <dialog id="bookingDialog" class="modal"><form id="bookingForm" class="form-card"><button type="button" class="modal-close" data-close="bookingDialog" aria-label="닫기">×</button><p class="eyebrow">BOOK YOUR STAY</p><h2>예약하기</h2><p id="bookingStayName" class="muted"></p><label>체크인<input name="checkIn" type="date" required></label><label>체크아웃<input name="checkOut" type="date" required></label><label>투숙 인원<input name="guestCount" type="number" min="1" value="2" required></label><p id="bookingEstimate" class="price"></p><button class="btn btn-primary btn-wide">예약 요청</button></form></dialog>
+</body></html>

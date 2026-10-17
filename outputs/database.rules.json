@@ -1,0 +1,29 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "members": {
+      "$uid": {
+        ".read": "auth != null && (auth.uid === $uid || auth.token.email === 'admin@example.com')",
+        ".write": "auth != null && (auth.token.email === 'admin@example.com' || (auth.uid === $uid && ((!data.exists() && newData.child('role').val() === 'member' && newData.child('email').val() === auth.token.email) || (data.exists() && newData.child('role').val() === data.child('role').val()))))",
+        ".validate": "newData.hasChildren(['name', 'email', 'role', 'createdAt', 'updatedAt'])"
+      }
+    },
+    "destinations": {
+      ".read": true,
+      "$id": { ".write": "auth != null && auth.token.email === 'admin@example.com'" }
+    },
+    "stays": {
+      ".read": true,
+      "$id": { ".write": "auth != null && auth.token.email === 'admin@example.com'" }
+    },
+    "reservations": {
+      ".read": "auth != null && auth.token.email === 'admin@example.com'",
+      "$id": {
+        ".read": "auth != null && (auth.token.email === 'admin@example.com' || data.child('memberId').val() === auth.uid)",
+        ".write": "auth != null && (auth.token.email === 'admin@example.com' || (!data.exists() && newData.child('memberId').val() === auth.uid && newData.child('status').val() === 'pending'))",
+        ".validate": "newData.hasChildren(['memberId', 'destinationId', 'stayId', 'checkIn', 'checkOut', 'guestCount', 'nights', 'pricePerNight', 'totalPrice', 'status', 'createdAt', 'updatedAt'])"
+      }
+    }
+  }
+}
